@@ -1,0 +1,2493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Complete AI Roadmap — Expert Edition v3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-primary: #ffffff;
+            --bg-secondary: #f8fafc;
+            --bg-card: #ffffff;
+            --text-primary: #0f172a;
+            --text-secondary: #334155;
+            --text-tertiary: #64748b;
+            --border-primary: #e2e8f0;
+            --border-secondary: #cbd5e1;
+            --accent-primary: #4f46e5;
+            --accent-secondary: #7c3aed;
+            --accent-light: #eef2ff;
+            --accent-subtle: #c7d2fe;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0,0,0,0.05), 0 2px 4px -2px rgba(0,0,0,0.05);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,0.05), 0 4px 6px -4px rgba(0,0,0,0.05);
+            --radius-sm: 6px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --font-sans: 'Inter', -apple-system, sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
+            --phase-gap: 3rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-sans);
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            line-height: 1.7;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        /* Header Section */
+        .header {
+            text-align: center;
+            padding: 5rem 1rem 4rem;
+            position: relative;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100%;
+            max-width: 800px;
+            height: 300px;
+            background: linear-gradient(180deg, var(--accent-light) 0%, transparent 100%);
+            z-index: 0;
+            border-radius: 0 0 50% 50%;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--accent-light);
+            color: var(--accent-primary);
+            border-radius: 999px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            margin-bottom: 2rem;
+            border: 1px solid var(--accent-subtle);
+            letter-spacing: 0.025em;
+        }
+
+        h1 {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: 800;
+            letter-spacing: -0.025em;
+            line-height: 1.1;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, var(--text-primary), var(--accent-primary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .subtitle {
+            font-size: 1.25rem;
+            color: var(--text-tertiary);
+            font-weight: 400;
+            max-width: 600px;
+            margin: 0 auto 3rem;
+            letter-spacing: -0.01em;
+        }
+
+        /* Stats Grid */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        .stat-item {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-lg);
+            padding: 1.25rem;
+            box-shadow: var(--shadow-md);
+            transition: all 0.25s ease;
+        }
+
+        .stat-item:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .stat-value {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--accent-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Controls */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0 3rem;
+            position: sticky;
+            top: 0;
+            background: var(--bg-secondary);
+            padding: 1rem 0;
+            z-index: 10;
+            border-bottom: 1px solid var(--border-primary);
+        }
+
+        .btn-control {
+            padding: 0.6rem 1.2rem;
+            border: 1px solid var(--border-secondary);
+            background: var(--bg-card);
+            border-radius: var(--radius-sm);
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 0.875rem;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .btn-control:hover {
+            background: var(--accent-light);
+            border-color: var(--accent-subtle);
+            color: var(--accent-primary);
+        }
+
+        /* Phase Section */
+        .phase-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--phase-gap);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s ease;
+        }
+
+        .phase-section:hover {
+            box-shadow: var(--shadow-md);
+        }
+
+        .phase-header {
+            padding: 2rem 2rem 1.5rem;
+            border-bottom: 1px solid var(--border-primary);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            background: linear-gradient(180deg, var(--bg-card) 0%, var(--bg-secondary) 100%);
+        }
+
+        .phase-header-left {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .phase-meta {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .phase-tag {
+            padding: 0.35rem 0.75rem;
+            border-radius: var(--radius-sm);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .tag-enhanced { background: #fef3c7; color: #92400e; }
+        .tag-new { background: #dbeafe; color: #1e40af; }
+        .tag-original { background: #f1f5f9; color: #334155; }
+        .tag-expert { background: #fce7f3; color: #9d174d; }
+
+        .phase-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        .phase-duration {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-tertiary);
+        }
+
+        .chevron-icon {
+            width: 24px;
+            height: 24px;
+            transition: transform 0.3s ease;
+            fill: var(--text-tertiary);
+        }
+
+        .phase-section.expanded .chevron-icon {
+            transform: rotate(180deg);
+        }
+
+        .phase-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+        }
+
+        .phase-content-inner {
+            padding: 2rem;
+        }
+
+        .phase-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 850px) {
+            .phase-grid {
+                grid-template-columns: 1fr;
+            }
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-primary);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .section-label::before {
+            content: '';
+            display: inline-block;
+            width: 4px;
+            height: 14px;
+            background: var(--accent-primary);
+            border-radius: 2px;
+        }
+
+        .topic-list, .resource-list, .project-list {
+            list-style: none;
+            margin-bottom: 1.5rem;
+        }
+
+        .topic-list li, .resource-list li, .project-list li {
+            position: relative;
+            padding-left: 1.25rem;
+            margin-bottom: 0.6rem;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            color: var(--text-secondary);
+        }
+
+        .topic-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--accent-subtle);
+            font-weight: 700;
+            font-size: 1.2rem;
+            top: -2px;
+        }
+
+        .topic-list li.new-item {
+            background: #e0e7ff;
+            color: var(--accent-primary);
+            padding: 0.35rem 0.75rem;
+            padding-left: 1.25rem;
+            border-radius: var(--radius-sm);
+            font-weight: 500;
+            margin-bottom: 0.75rem;
+        }
+
+        .topic-list li.new-item::before {
+            color: var(--accent-primary);
+            content: '★';
+            font-size: 0.7rem;
+        }
+
+        .resource-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--text-tertiary);
+            font-weight: 500;
+        }
+
+        .project-list li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-primary);
+            font-weight: 700;
+            font-size: 1rem;
+        }
+
+        .note-box {
+            margin-top: 2rem;
+            padding: 1.25rem 1.5rem;
+            background: var(--bg-secondary);
+            border-left: 4px solid var(--accent-primary);
+            border-radius: 0 var(--radius-md) var(--radius-md) 0;
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        .note-box strong {
+            color: var(--accent-primary);
+        }
+
+        /* Special Sections */
+        .info-section {
+            background: var(--bg-card);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-lg);
+            margin-bottom: var(--phase-gap);
+            padding: 2.5rem;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .info-title {
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--text-primary);
+            letter-spacing: -0.02em;
+        }
+
+        /* Schedule Grid */
+        .schedule-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+        }
+
+        .schedule-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+        }
+
+        .schedule-day {
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            color: var(--accent-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .schedule-hours {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 0.25rem;
+        }
+
+        .schedule-desc {
+            font-size: 0.875rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Table Styles */
+        .table-wrapper {
+            overflow-x: auto;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 0.9rem;
+        }
+
+        thead {
+            background: var(--bg-secondary);
+        }
+
+        th {
+            text-align: left;
+            padding: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            border-bottom: 2px solid var(--border-secondary);
+        }
+
+        td {
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-primary);
+            color: var(--text-secondary);
+            vertical-align: top;
+        }
+
+        tr:hover {
+            background: var(--bg-secondary);
+        }
+
+        /* Tips Grid */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .tip-card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-primary);
+            border-radius: var(--radius-md);
+            padding: 1.5rem;
+        }
+
+        .tip-icon {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .tip-title {
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-primary);
+            font-size: 0.95rem;
+        }
+
+        .tip-desc {
+            font-size: 0.85rem;
+            color: var(--text-tertiary);
+        }
+
+        /* Checklist */
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 0.8rem 0;
+            border-bottom: 1px solid var(--border-primary);
+            cursor: pointer;
+        }
+
+        .checklist-item:last-child {
+            border-bottom: none;
+        }
+
+        .checklist-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            accent-color: var(--accent-primary);
+            cursor: pointer;
+        }
+
+        .checklist-item.done span {
+            text-decoration: line-through;
+            color: var(--text-tertiary);
+        }
+
+        /* Progress */
+        .progress-bar {
+            width: 100%;
+            height: 12px;
+            background: var(--bg-secondary);
+            border-radius: 6px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-primary), var(--accent-secondary));
+            border-radius: 6px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-text {
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--accent-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Footer */
+        .footer {
+            text-align: center;
+            padding: 4rem 2rem;
+            color: var(--text-tertiary);
+            font-size: 0.85rem;
+        }
+
+        /* Print styles */
+        @media print {
+            .controls, .btn-control {
+                display: none !important;
+            }
+            .phase-content {
+                max-height: none !important;
+            }
+            .chevron-icon {
+                display: none !important;
+            }
+            .phase-header {
+                background: white !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="badge">★ v3 Expert Edition</div>
+                <h1>Complete AI Roadmap</h1>
+                <p class="subtitle">CST Diploma → Expert AI Engineer · 20 Phases · Production-Grade · Industry-Ready</p>
+                <div class="stats-grid">
+                    <div class="stat-item">
+                        <div class="stat-value">55–75</div>
+                        <div class="stat-label">Months Total</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">20</div>
+                        <div class="stat-label">Phases</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">20h</div>
+                        <div class="stat-label">Per Week</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value">10+</div>
+                        <div class="stat-label">Added Phases</div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="controls">
+            <button class="btn-control" onclick="toggleAll(true)">▼ Expand All</button>
+            <button class="btn-control" onclick="toggleAll(false)">▲ Collapse All</button>
+        </div>
+
+        <main id="phases-container">
+            <!-- Phase 0 -->
+            <section class="phase-section expanded">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 0</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">Python Advanced + Math Foundation + SQL</div>
+                        <div class="phase-duration">2–3 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Python OOP</li>
+                                    <li>NumPy + Broadcasting</li>
+                                    <li>Linear Algebra (Eigenvalues)</li>
+                                    <li>Calculus & Chain Rule</li>
+                                    <li class="new-item">Matrix Calculus</li>
+                                    <li class="new-item">Optimization Theory</li>
+                                    <li class="new-item">Information Theory basics</li>
+                                    <li class="new-item">Numerical Stability (NaN/exploding gradients)</li>
+                                    <li>SVD & Eigen Decomposition (deep)</li>
+                                    <li>Generators & Decorators</li>
+                                    <li>Probability & Statistics</li>
+                                    <li>Pandas, Matplotlib / Seaborn</li>
+                                    <li>SQL (SELECT, JOIN, GROUP BY, Window Functions)</li>
+                                    <li>Basic Data Cleaning with SQL</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>Programming Hero (Bangla) — Python Advanced</li>
+                                    <li>3Blue1Brown — Essence of Linear Algebra</li>
+                                    <li>Khan Academy — Calculus 1</li>
+                                    <li>StatQuest — Probability & Statistics</li>
+                                    <li>freeCodeCamp — NumPy Tutorial</li>
+                                    <li>Mode Analytics — SQL Tutorial (Free)</li>
+                                    <li>SQLZoo — Interactive SQL (Free)</li>
+                                    <li>Mathematics for ML — Deisenroth (Free PDF)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem; display:grid; grid-template-columns:1fr; gap:2rem;">
+                            <div>
+                                <div class="section-label">Projects</div>
+                                <ul class="project-list">
+                                    <li>Bank Account System (OOP)</li>
+                                    <li>TODO App with File Save/Load</li>
+                                    <li>NumPy Student Grade Manager</li>
+                                    <li>Pandas Data Analysis (CSV)</li>
+                                    <li>SQL queries on Bangla dataset (SQLite)</li>
+                                    <li>Implement gradient descent from scratch using Matrix Calculus</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> Added Matrix Calculus, Optimization Theory, Information Theory, Numerical Stability, deep SVD/Eigen. Essential for research-grade AI.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 0.5 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 0.5</span>
+                            <span class="phase-tag tag-new">NEW</span>
+                        </div>
+                        <div class="phase-title">Core CS Foundations</div>
+                        <div class="phase-duration">1–2 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Data Structures & Algorithms (DSA)</li>
+                                    <li>Time & Space Complexity (Big-O)</li>
+                                    <li>Memory Management (heap, stack, GC)</li>
+                                    <li>Multithreading & Multiprocessing</li>
+                                    <li>Concurrency & Async Python</li>
+                                    <li>Operating Systems Basics</li>
+                                    <li>Networking Basics (HTTP, REST, gRPC)</li>
+                                    <li>Recursion & Dynamic Programming</li>
+                                    <li>Sorting & Searching Algorithms</li>
+                                    <li>Hash Maps, Trees, Graphs</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>LeetCode — leetcode.com (free tier)</li>
+                                    <li>NeetCode — YouTube (free)</li>
+                                    <li>MIT 6.006 Introduction to Algorithms</li>
+                                    <li>Operating Systems: Three Easy Pieces — ostep.org</li>
+                                    <li>Computer Networking: A Top-Down Approach (Kurose)</li>
+                                    <li>Python Concurrency — Real Python</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Implement 10 classic DSA problems in Python</li>
+                                <li>Build a thread-safe queue from scratch</li>
+                                <li>Write async data fetcher (aiohttp)</li>
+                                <li>Implement LRU Cache (HashMap + DLL)</li>
+                                <li>Solve 20 LeetCode Medium problems (Arrays, DP, Graphs)</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ NEW:</strong> Core CS foundations are tested in every AI engineer interview and needed for optimization, scalable systems, and GPU/CUDA work.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 1 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 1</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">Machine Learning (Classical)</div>
+                        <div class="phase-duration">3–4 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Random Forest</li>
+                                    <li>Cross-validation</li>
+                                    <li>Overfitting & Regularization</li>
+                                    <li>Feature Engineering</li>
+                                    <li class="new-item">Recommendation Systems</li>
+                                    <li class="new-item">Anomaly Detection</li>
+                                    <li>Supervised vs Unsupervised</li>
+                                    <li>Linear & Logistic Regression, SVM</li>
+                                    <li>K-Means Clustering, ROC-AUC</li>
+                                    <li>Hyperparameter Tuning</li>
+                                    <li class="new-item">AutoML basics</li>
+                                    <li class="new-item">Ensemble Engineering: Stacking, Blending</li>
+                                    <li class="new-item">Ranking Systems: Learning-to-Rank</li>
+                                    <li class="new-item">Causal Inference basics</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>Andrew Ng — ML Specialization (Coursera Audit)</li>
+                                    <li>Kaggle Learn — Free ML Micro-courses</li>
+                                    <li>Scikit-learn Documentation</li>
+                                    <li>StatQuest — ML Concepts Explained Simply</li>
+                                    <li>Hands-On ML — Aurélien Géron (O'Reilly)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>House Price Prediction (Linear Regression)</li>
+                                <li>Iris Flower Classification (Decision Tree)</li>
+                                <li>Customer Segmentation (K-Means)</li>
+                                <li>Titanic Survival (Kaggle Competition)</li>
+                                <li>Anomaly Detection on network traffic data</li>
+                                <li>Simple Movie Recommendation System (collaborative filtering)</li>
+                                <li>Local Bangla Dataset ML Model</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> Added Recommendation Systems, Anomaly Detection, AutoML, Ensemble Engineering, Ranking Systems, Causal Inference — all heavily used in industry.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 1.5 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 1.5</span>
+                            <span class="phase-tag tag-new">NEW</span>
+                        </div>
+                        <div class="phase-title">Statistics for ML & Time Series</div>
+                        <div class="phase-duration">~1 Month</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Hypothesis Testing & p-values</li>
+                                    <li>Confidence Intervals</li>
+                                    <li>A/B Testing & CUPED</li>
+                                    <li>Power Analysis</li>
+                                    <li>Time Series: ARIMA, Prophet</li>
+                                    <li>Statistical Significance Testing</li>
+                                    <li>LSTMs for Forecasting</li>
+                                    <li>Seasonality & Trend Decomposition</li>
+                                    <li>Bayesian Statistics basics</li>
+                                    <li>Calibration of probability estimates</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>StatQuest — Statistics (YouTube)</li>
+                                    <li>Practical Statistics for Data Scientists (O'Reilly)</li>
+                                    <li>Facebook Prophet — github.com/facebook/prophet</li>
+                                    <li>statsmodels — statsmodels.org</li>
+                                    <li>Forecasting: Principles & Practice (free online book)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Run A/B test comparing base model vs LoRA fine-tune. Report lift + 95% CI.</li>
+                                <li>Forecast Bangla stock or weather data with ARIMA + Prophet</li>
+                                <li>Build statistical significance testing pipeline for model comparison</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ NEW:</strong> You cannot prove your model is better without this. Every promo doc at top companies asks 'what was the stat sig?'
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 2 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 2</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">Deep Learning + PyTorch</div>
+                        <div class="phase-duration">3–4 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Backpropagation</li>
+                                    <li>PyTorch nn.Module</li>
+                                    <li class="new-item">Mixed Precision Training AMP/FP16/BF16</li>
+                                    <li class="new-item">Gradient Checkpointing</li>
+                                    <li>Perceptron & MLP</li>
+                                    <li>Activation Functions (ReLU, Sigmoid, GELU)</li>
+                                    <li>Loss Functions (MSE, CrossEntropy)</li>
+                                    <li>SGD / Adam / AdamW Optimizer</li>
+                                    <li>Dropout & Regularization</li>
+                                    <li>Training Loop, DataLoader, GPU/CPU switching</li>
+                                    <li class="new-item">torch.profiler basics</li>
+                                    <li class="new-item">Experiment Tracking with MLflow from Day 1</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>Andrew Ng — Deep Learning Specialization (Audit)</li>
+                                    <li>3Blue1Brown — Neural Networks (YouTube)</li>
+                                    <li>Neural Networks from Scratch — nnfs.io</li>
+                                    <li>freeCodeCamp — Complete PyTorch Course</li>
+                                    <li>MLflow Quickstart — mlflow.org</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Backpropagation from scratch (NumPy)</li>
+                                <li>XOR Problem Neural Network</li>
+                                <li>MNIST Digit Recognition (95%+ accuracy) — log all runs with MLflow</li>
+                                <li>CIFAR-10 Image Classification (PyTorch)</li>
+                                <li>Mixed precision training experiment: compare FP32 vs BF16 memory & speed</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> Added Mixed Precision Training, Gradient Checkpointing, MLflow from Day 1. Never start logging late — expert habit from Phase 2.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 2.5 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 2.5</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">Git, DevOps & Data Engineering</div>
+                        <div class="phase-duration">~1 Month</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Git & GitHub (branches, PRs, merge)</li>
+                                    <li class="new-item">Data Validation (Great Expectations / Pydantic)</li>
+                                    <li class="new-item">Data Labeling & Annotation: Label Studio / CVAT</li>
+                                    <li class="new-item">Unit Testing for ML Code with pytest</li>
+                                    <li class="new-item">Spark / Polars for Large-Scale Data</li>
+                                    <li class="new-item">Structured Logging — Loguru / structlog</li>
+                                    <li class="new-item">DVC (Data Version Control)</li>
+                                    <li>Linux CLI basics, Black, isort, Pre-commit hooks</li>
+                                    <li>Basic CI with GitHub Actions</li>
+                                    <li>Basic Airflow (DAGs, scheduling)</li>
+                                    <li>ETL/ELT basics, Data Contracts</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>Pro Git Book — git-scm.com/book (Free)</li>
+                                    <li>Missing Semester — MIT (YouTube)</li>
+                                    <li>DVC docs — dvc.org</li>
+                                    <li>Label Studio — labelstud.io (free, self-host)</li>
+                                    <li>Great Expectations — greatexpectations.io</li>
+                                    <li>Polars docs — pola.rs</li>
+                                    <li>PySpark — Databricks free community</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Version-control all Phase 0–2 projects on GitHub</li>
+                                <li>Label 500 Bangla sentences for sentiment (Label Studio), export JSONL, train classifier</li>
+                                <li>Add Great Expectations checkpoint to ETL pipeline — auto-drop bad records</li>
+                                <li>Integrate pytest: 10+ ML tests covering data loaders, loss functions, shapes</li>
+                                <li>Process Bangla Wikipedia dump with Polars — compare pandas vs Polars at 1 GB</li>
+                                <li>Simple ETL: download CSV → clean → validate → save (Airflow scheduled)</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> Data Labeling, Unit Testing for ML, Great Expectations, Structured Logging, DVC, Spark/Polars. Industry AI engineers spend 40–60% of time on data pipelines.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 3 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 3</span>
+                            <span class="phase-tag tag-original">ORIGINAL</span>
+                        </div>
+                        <div class="phase-title">NLP & Transformers</div>
+                        <div class="phase-duration">3–4 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Attention Mechanism</li>
+                                    <li>Transformer Architecture</li>
+                                    <li>Hugging Face Library</li>
+                                    <li>Tokenization</li>
+                                    <li>Word Embeddings (Word2Vec, GloVe)</li>
+                                    <li>RNN / LSTM / GRU</li>
+                                    <li>Bidirectional RNN</li>
+                                    <li>Self-Attention & Multi-head Attention</li>
+                                    <li>Positional Encoding</li>
+                                    <li>BERT & GPT Architecture</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>Stanford CS224N — NLP with Deep Learning (YouTube)</li>
+                                    <li>Hugging Face Course — huggingface.co/course</li>
+                                    <li>Jay Alammar — The Illustrated Transformer</li>
+                                    <li>3Blue1Brown — Attention is All You Need</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Bangla Sentiment Analysis (TF-IDF + Naive Bayes)</li>
+                                <li>LSTM Simple Text Generator</li>
+                                <li>Attention Layer — implement from scratch (PyTorch)</li>
+                                <li>Transformer Encoder Block</li>
+                                <li>BERT Sentiment Analysis (Hugging Face)</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 3.5 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 3.5</span>
+                            <span class="phase-tag tag-new">NEW</span>
+                        </div>
+                        <div class="phase-title">Reinforcement Learning Foundations</div>
+                        <div class="phase-duration">~0.5 Month</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Markov Decision Process (MDP)</li>
+                                    <li>Q-Learning</li>
+                                    <li>Deep Q-Networks (DQN)</li>
+                                    <li>Policy Gradient basics</li>
+                                    <li>Rewards, states, actions, episodes</li>
+                                    <li>Epsilon-greedy exploration</li>
+                                    <li>Replay Buffer, Target Networks</li>
+                                    <li>OpenAI Gymnasium environment</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>Spinning Up in Deep RL — OpenAI (free)</li>
+                                    <li>CleanRL — GitHub (clean RL implementations)</li>
+                                    <li>Gymnasium — gymnasium.farama.org</li>
+                                    <li>DeepMind x UCL RL Lectures (YouTube)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>DQN on CartPole (OpenAI Gym) — avg reward >195 over 100 episodes</li>
+                                <li>Implement vanilla Policy Gradient from scratch</li>
+                                <li>Read PPO paper (Schulman et al.)</li>
+                                <li>Log reward curves with W&B</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ NEW:</strong> You cannot truly understand RLHF (Phase 4) without RL basics. PPO, reward shaping, policy gradients are foundational to alignment work.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 4 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 4</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">LLM Theory + Fine-tuning</div>
+                        <div class="phase-duration">3–4 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Causal Language Modeling</li>
+                                    <li>LoRA (Low-Rank Adaptation)</li>
+                                    <li class="new-item">QLoRA (4-bit fine-tuning)</li>
+                                    <li class="new-item">DPO / ORPO — Modern alignment</li>
+                                    <li class="new-item">IA3 (PEFT alternative to LoRA)</li>
+                                    <li class="new-item">W&B — mandatory from all phases</li>
+                                    <li class="new-item">RLAIF — RL from AI Feedback</li>
+                                    <li>Token Prediction, Beam Search / Top-k Sampling</li>
+                                    <li>Scaling Laws, Transfer Learning</li>
+                                    <li>Supervised Fine-tuning (SFT), Instruction Tuning</li>
+                                    <li>Reward Modeling, Quantization (8-bit)</li>
+                                    <li class="new-item">DVC for dataset versioning</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>Andrej Karpathy — Let's build GPT from scratch (YouTube)</li>
+                                    <li>karpathy/nanoGPT — GitHub</li>
+                                    <li>LoRA Paper — arxiv.org/abs/2106.09714</li>
+                                    <li>DPO Paper — arxiv.org/abs/2305.18290</li>
+                                    <li>Hugging Face PEFT — github.com/huggingface/peft</li>
+                                    <li>W&B — wandb.ai (free tier)</li>
+                                    <li>LangSmith — smith.langchain.com (free tier)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>BERT Custom Sentiment Fine-tuning</li>
+                                <li>nanoGPT Shakespeare Dataset Training</li>
+                                <li>GPT-2 Fine-tune on your own data</li>
+                                <li>LoRA Efficient Fine-tuning Experiment</li>
+                                <li>QLoRA 4-bit fine-tune of a 7B model on 1 GPU</li>
+                                <li>DPO alignment training experiment</li>
+                                <li>Log ALL runs to W&B — public project with 10+ tracked runs</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> Added QLoRA, DPO/ORPO, IA3, RLAIF, W&B mandatory from here. W&B profiles are checked by interviewers.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 4.5 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 4.5</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">LLM Evaluation, Safety & Responsible AI</div>
+                        <div class="phase-duration">~1.5 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Hallucination Detection</li>
+                                    <li>LLM Benchmarks (MMLU, HellaSwag, HumanEval)</li>
+                                    <li>Red-teaming & Adversarial Prompting</li>
+                                    <li class="new-item">Fairness Auditing — Fairlearn / AI Fairness 360</li>
+                                    <li class="new-item">Bias Measurement & Mitigation</li>
+                                    <li class="new-item">Model Cards & Datasheets</li>
+                                    <li class="new-item">Adversarial ML</li>
+                                    <li>BLEU / ROUGE / BERTScore</li>
+                                    <li>OWASP LLM Top 10</li>
+                                    <li>PII handling & data privacy</li>
+                                    <li class="new-item">Differential Privacy basics</li>
+                                    <li class="new-item">Jailbreak Defense</li>
+                                    <li class="new-item">Model Interpretability — SHAP / LIME</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>EleutherAI lm-evaluation-harness — GitHub</li>
+                                    <li>HELM — Stanford CRFM</li>
+                                    <li>Anthropic — Constitutional AI Paper</li>
+                                    <li>OWASP LLM Top 10 — owasp.org/llm-top-10</li>
+                                    <li>Fairlearn — fairlearn.org</li>
+                                    <li>AI Fairness 360 — IBM</li>
+                                    <li>TruLens — trulens.org</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Run lm-eval on a fine-tuned model</li>
+                                <li>Red-team your own GPT-2 fine-tune</li>
+                                <li>Build a hallucination detection pipeline</li>
+                                <li>Compare 3 LLMs on Bangla tasks with custom metrics</li>
+                                <li>Audit a model against OWASP LLM Top 10 checklist</li>
+                                <li>Fairness audit: demographic parity + equalized odds on Phase 1 classifier</li>
+                                <li>Publish model card for your Phase 5 LLM with risk assessment + bias results</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> Added Fairness Auditing, Model Cards, Adversarial ML, Supply Chain Security, Differential Privacy, SHAP/LIME. EU AI Act + interviews test all of this.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 4.6 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 4.6</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">RAG — Retrieval-Augmented Generation</div>
+                        <div class="phase-duration">2–3 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>RAG Pipeline (Query → Retrieve → Generate)</li>
+                                    <li>Agentic RAG</li>
+                                    <li class="new-item">DSPy — Programmatic Prompt Optimization</li>
+                                    <li class="new-item">Synthetic Data Generation for fine-tuning</li>
+                                    <li class="new-item">Cost Optimization & Token Budgeting</li>
+                                    <li>Vector Databases (ChromaDB, FAISS, Pinecone)</li>
+                                    <li>Text Embeddings & Chunking</li>
+                                    <li>BM25 Sparse Retrieval, Hybrid Search</li>
+                                    <li>LangChain & LlamaIndex</li>
+                                    <li>Reranking (Cross-Encoder)</li>
+                                    <li>RAG Evaluation (RAGAS)</li>
+                                    <li class="new-item">Promptfoo — prompt regression testing</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>LangChain Docs — python.langchain.com</li>
+                                    <li>LlamaIndex Docs — docs.llamaindex.ai</li>
+                                    <li>FAISS — github.com/facebookresearch/faiss</li>
+                                    <li>ChromaDB — trychroma.com</li>
+                                    <li>RAGAS — github.com/explodinggradients/ragas</li>
+                                    <li>DSPy — github.com/stanfordnlp/dspy</li>
+                                    <li>DeepLearning.AI — LangChain Short Course (Free)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>PDF Chatbot (Q&A from your own PDF)</li>
+                                <li>Bangla Wikipedia RAG System</li>
+                                <li>Code Documentation Q&A (GitHub repo)</li>
+                                <li>Multi-document Research Assistant</li>
+                                <li>Agentic RAG with Tool Use</li>
+                                <li>Custom LLM + RAG = AI Assistant</li>
+                                <li>DSPy: optimize a 5-shot Bangla QA prompt — show 10%+ accuracy gain</li>
+                                <li>Cost dashboard: measure cost per query, apply caching — show 50%+ reduction</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> Added DSPy, Synthetic Data Generation, Cost Optimization. Junior AI engineers are hired to build RAG systems right now.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 4.7 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 4.7</span>
+                            <span class="phase-tag tag-new">NEW</span>
+                        </div>
+                        <div class="phase-title">Reinforcement Learning (Full)</div>
+                        <div class="phase-duration">~2 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>PPO (Proximal Policy Optimization)</li>
+                                    <li>Actor-Critic Methods (A2C, A3C, SAC)</li>
+                                    <li>Multi-Agent RL</li>
+                                    <li>RLHF internals (full PPO implementation)</li>
+                                    <li>Deep Q-Network (DQN full)</li>
+                                    <li>Policy Gradient (REINFORCE)</li>
+                                    <li>Reward Modeling, Offline RL</li>
+                                    <li>Reward Shaping, Exploration vs Exploitation</li>
+                                    <li>Environment wrappers</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>Spinning Up in Deep RL — OpenAI (free)</li>
+                                    <li>CleanRL GitHub — all algorithms clean</li>
+                                    <li>Stable Baselines3</li>
+                                    <li>PPO Paper — Schulman et al. arXiv:1707.06347</li>
+                                    <li>DeepMind RL Lectures — YouTube</li>
+                                    <li>Sutton & Barto — RL: An Introduction (free PDF)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>PPO on LunarLander-v2 (solve it)</li>
+                                <li>Multi-agent competitive game (2-agent RL)</li>
+                                <li>Implement RLHF pipeline: reward model + PPO fine-tuning on small LLM</li>
+                                <li>Offline RL experiment on pre-collected dataset</li>
+                                <li>Log all reward curves to W&B</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ NEW:</strong> RL is used in RLHF, robotics, agents, autonomous systems, advanced reasoning, game AI. Full PPO is the industry standard for alignment.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 5 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 5</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">Build Your Own LLM</div>
+                        <div class="phase-duration">2–3 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Advanced Training Loop</li>
+                                    <li class="new-item">Data Curation & Pre-training Dataset Engineering</li>
+                                    <li class="new-item">Advanced Quantization: GPTQ / AWQ / GGUF / llama.cpp</li>
+                                    <li class="new-item">Knowledge Distillation</li>
+                                    <li class="new-item">Streaming Inference — SSE / WebSocket</li>
+                                    <li>Tokenizer Building (BPE) + vocab scaling</li>
+                                    <li>GPT Architecture (Custom)</li>
+                                    <li>Gradient Clipping, LR Scheduler</li>
+                                    <li>Checkpoint Saving, LoRA Fine-tuning</li>
+                                    <li class="new-item">MinHash LSH for deduplication</li>
+                                    <li class="new-item">fastText for language filtering</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>karpathy/nanoGPT — GitHub</li>
+                                    <li>Hugging Face PEFT Library</li>
+                                    <li>AutoGPTQ GitHub</li>
+                                    <li>llama.cpp GitHub</li>
+                                    <li>Argilla — argilla.io (synthetic dataset curation)</li>
+                                    <li>Bangla Wikipedia Dumps — dumps.wikimedia.org</li>
+                                    <li>RunPod — runpod.io ($0.20–0.80/hr GPU)</li>
+                                    <li>FastAPI StreamingResponse docs</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Train 50M parameter GPT (ablation-first)</li>
+                                <li>Flask/FastAPI API Deployment</li>
+                                <li>Web Interface for your LLM with real-time token streaming (SSE)</li>
+                                <li>Bangla Language Model Fine-tuning</li>
+                                <li>Data curation: take raw 10 GB text dump → deduplicate → filter → clean → JSONL</li>
+                                <li>Quantize Llama-3 8B with GPTQ (4-bit) + AWQ + llama.cpp — benchmark perplexity, speed, RAM</li>
+                                <li>Distil fine-tuned BERT (teacher) → 2-layer student — measure accuracy vs speed</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> Data curation, Advanced Quantization GPTQ/AWQ/GGUF, Knowledge Distillation, Streaming Inference. GPU COST: Start 10M ablations. Budget $50–100.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 5.5 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 5.5</span>
+                            <span class="phase-tag tag-new">NEW</span>
+                        </div>
+                        <div class="phase-title">Distributed Training & Scale</div>
+                        <div class="phase-duration">1–1.5 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>DeepSpeed (ZeRO stages 1, 2, 3)</li>
+                                    <li>FSDP — PyTorch Fully Sharded Data Parallel</li>
+                                    <li>Data Parallelism vs Model Parallelism</li>
+                                    <li>Tensor Parallelism</li>
+                                    <li>Pipeline Parallelism</li>
+                                    <li>CPU Offloading for OOM management</li>
+                                    <li>Distributed Data Parallel (DDP) — PyTorch</li>
+                                    <li>NCCL Basics (GPU communication)</li>
+                                    <li>Fault Tolerance & Checkpoint Resume</li>
+                                    <li>Multi-node training</li>
+                                    <li>Ray — distributed AI systems</li>
+                                    <li>Flash Attention 2</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>DeepSpeed GitHub — microsoft/DeepSpeed</li>
+                                    <li>PyTorch FSDP tutorial — pytorch.org</li>
+                                    <li>PyTorch DDP tutorial</li>
+                                    <li>FlashAttention2 — github.com/Dao-AILab/flash-attention</li>
+                                    <li>Ray — ray.io</li>
+                                    <li>DeepLearning.AI — Efficiently Serving LLMs (free)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Add DeepSpeed ZeRO-2 config to Phase 5 nanoGPT — run on 2x RunPod GPUs (~$5–10)</li>
+                                <li>Compare single-GPU vs multi-GPU: time and memory usage</li>
+                                <li>Configure CPU offloading to train larger model on budget GPU without OOM</li>
+                                <li>Implement FlashAttention2 in training loop — measure memory savings</li>
+                                <li>Train 1B param model using FSDP — show scaling efficiency >80%</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ NEW:</strong> Without distributed training you cannot train >1B params professionally. ZeRO-2 offloading alone can 3x the model size you can train on one GPU.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 6 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 6</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">Computer Vision + Multimodal</div>
+                        <div class="phase-duration">3–4 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Object Detection (YOLO)</li>
+                                    <li>Vision Transformer (ViT)</li>
+                                    <li>CLIP (vision-language model)</li>
+                                    <li>LLaVA / multimodal LLMs</li>
+                                    <li class="new-item">SAM — Segment Anything Model</li>
+                                    <li class="new-item">OCR Systems</li>
+                                    <li class="new-item">Image Quality Metrics: FID / LPIPS / CLIP-Score</li>
+                                    <li class="new-item">Multimodal Alignment — contrastive loss from scratch</li>
+                                    <li>CNN Architecture, ResNet & EfficientNet</li>
+                                    <li>U-Net Image Segmentation</li>
+                                    <li>Transfer Learning (CV), OpenCV, torchvision</li>
+                                    <li class="new-item">Depth Estimation</li>
+                                    <li class="new-item">Data Annotation: CVAT / Label Studio</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>Stanford CS231N (Free YouTube 2024)</li>
+                                    <li>fast.ai — Practical Deep Learning Part 1</li>
+                                    <li>Roboflow — Object Detection Guide</li>
+                                    <li>OpenAI CLIP — github.com/openai/CLIP</li>
+                                    <li>LLaVA — github.com/haotian-liu/LLaVA</li>
+                                    <li>SAM — github.com/facebookresearch/segment-anything</li>
+                                    <li>Yannic Kilcher — ViT Paper Explained (YouTube)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Image Classifier (Custom Dataset)</li>
+                                <li>YOLO Object Detection (real-time camera)</li>
+                                <li>U-Net Image Segmentation</li>
+                                <li>Neural Style Transfer</li>
+                                <li>Anime Character Classifier</li>
+                                <li>CLIP-based image search engine</li>
+                                <li>Simple multimodal chatbot (image + text input)</li>
+                                <li>Annotate 200 anime frames with CVAT — train YOLO on your own labels</li>
+                                <li>Implement contrastive loss from scratch that binds text → image embeddings</li>
+                                <li>Measure FID/LPIPS/CLIP-Score on your generated images</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> FID/LPIPS/CLIP-Score metrics fix the 'no evaluation' gap. Don't just generate — prove quality mathematically. SAM and OCR are mainstream in industry.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 6.5 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 6.5</span>
+                            <span class="phase-tag tag-new">NEW</span>
+                        </div>
+                        <div class="phase-title">Graph Neural Networks & Audio/Speech AI</div>
+                        <div class="phase-duration">2–3 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>GCN — Graph Convolutional Networks</li>
+                                    <li>GAT — Graph Attention Networks</li>
+                                    <li>GraphSAGE</li>
+                                    <li>Speech Recognition (ASR) — Whisper</li>
+                                    <li>Text-to-Speech (TTS)</li>
+                                    <li>Voice Cloning</li>
+                                    <li>Graph construction from data</li>
+                                    <li>Node/edge/graph classification</li>
+                                    <li>Knowledge Graphs</li>
+                                    <li>Speaker Diarization</li>
+                                    <li>Audio Diffusion Models</li>
+                                    <li>Audio preprocessing (mel spectrograms)</li>
+                                    <li>Coqui TTS / Bark / XTTS</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>PyTorch Geometric — pytorch-geometric.readthedocs.io</li>
+                                    <li>Stanford CS224W — Graph ML (YouTube, free)</li>
+                                    <li>OpenAI Whisper — github.com/openai/whisper</li>
+                                    <li>Coqui TTS — github.com/coqui-ai/TTS</li>
+                                    <li>Bark — github.com/suno-ai/bark</li>
+                                    <li>AudioCraft — github.com/facebookresearch/audiocraft</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Node classification on Cora citation network (GCN)</li>
+                                <li>Fraud detection with GraphSAGE (financial graph)</li>
+                                <li>Transcribe Bangla audio using Whisper — measure WER</li>
+                                <li>Build Bangla TTS system with Coqui TTS</li>
+                                <li>Voice cloning: clone a voice from 5-second sample</li>
+                                <li>Knowledge graph QA over a Bangla document corpus</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ NEW:</strong> GNNs are used in social/recommendation/fraud systems. Voice AI is one of the hottest 2025–26 markets.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 7 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 7</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">Generative Models (Diffusion / GAN / FLUX)</div>
+                        <div class="phase-duration">4–5 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>DDPM Diffusion Models</li>
+                                    <li>Stable Diffusion Architecture</li>
+                                    <li>ControlNet</li>
+                                    <li>FLUX Model Family</li>
+                                    <li>ComfyUI Workflow</li>
+                                    <li class="new-item">FVD — Fréchet Video Distance</li>
+                                    <li class="new-item">FID / LPIPS / CLIP-Score evaluation</li>
+                                    <li>GAN / DCGAN / StyleGAN</li>
+                                    <li>VAE (Variational Autoencoder)</li>
+                                    <li>DreamBooth / Textual Inversion</li>
+                                    <li class="new-item">SVD — Stable Video Diffusion</li>
+                                    <li class="new-item">CogVideoX-5B</li>
+                                    <li class="new-item">SkyReels</li>
+                                    <li class="new-item">Mochi-1</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>Hugging Face Diffusers Course</li>
+                                    <li>DDPM Paper — arxiv.org/abs/2006.11239</li>
+                                    <li>Stable Diffusion — CompVis/stable-diffusion</li>
+                                    <li>ControlNet Paper — arxiv.org/abs/2302.05543</li>
+                                    <li>ComfyUI — github.com/comfyanonymous/ComfyUI</li>
+                                    <li>FLUX — black-forest-labs/flux</li>
+                                    <li>CogVideoX — github.com/THUDM/CogVideo</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>DCGAN Face Generation</li>
+                                <li>VAE Image Reconstruction</li>
+                                <li>Stable Diffusion Local Run</li>
+                                <li>Anime LoRA Fine-tune (Stable Diffusion)</li>
+                                <li>ControlNet Pose-Controlled Generation</li>
+                                <li>ComfyUI Custom Workflow for Anime</li>
+                                <li>FLUX Model — anime image generation</li>
+                                <li>Mathematically prove Anime LoRA quality: measure FID before vs after</li>
+                                <li>Run CogVideoX-5B or SVD for video generation</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> Always measure FID/FVD. 'Anime video generated' is not a metric. SkyReels and CogVideoX-5B added as latest open-source SOTA.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 7.5 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 7.5</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">AI Agents & Agentic Frameworks</div>
+                        <div class="phase-duration">2–3 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>ReAct Agent Pattern</li>
+                                    <li>LangGraph (stateful agents)</li>
+                                    <li>AutoGen / CrewAI (multi-agent)</li>
+                                    <li>MCP (Model Context Protocol)</li>
+                                    <li class="new-item">DSPy — Programmatic Agent Optimization</li>
+                                    <li class="new-item">Advanced Memory: Vector DB + Knowledge Graph</li>
+                                    <li class="new-item">Promptfoo — Prompt Regression Testing</li>
+                                    <li>Tool Use & Function Calling</li>
+                                    <li>Planning & Reasoning (Chain-of-Thought)</li>
+                                    <li>Memory (short-term vs long-term)</li>
+                                    <li>Human-in-the-loop Agents</li>
+                                    <li class="new-item">LangSmith tracing for all LangChain chains</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>LangGraph Docs — langchain-ai.github.io/langgraph</li>
+                                    <li>AutoGen — github.com/microsoft/autogen</li>
+                                    <li>CrewAI — github.com/crewAIInc/crewAI</li>
+                                    <li>Anthropic — Tool Use Documentation</li>
+                                    <li>DSPy — github.com/stanfordnlp/dspy</li>
+                                    <li>DeepLearning.AI — AI Agents in LangGraph (Free)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Research Agent (web search + summarise)</li>
+                                <li>Code Review Agent (reads GitHub PR)</li>
+                                <li>Multi-agent Debate System (two LLMs argue)</li>
+                                <li>Anime Idea Generator Agent</li>
+                                <li>Agentic RAG with memory + tool calls</li>
+                                <li>Advanced Memory Agent: remembers facts from 50 conversations ago (Vector DB + KG)</li>
+                                <li>Promptfoo regression test: alter core prompt, ensure 0 broken downstream features</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> DSPy for programmatic optimization, Advanced Memory (Vector DB + Knowledge Graph). Agents are #1 hiring topic in AI in 2025–26.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 8 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 8 🎌</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">Anime Video AI — Final Goal!</div>
+                        <div class="phase-duration">4–6 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>AnimateDiff & AnimateDiff-Lightning</li>
+                                    <li>Wan2.1 (best open-source video model)</li>
+                                    <li>ComfyUI Video Workflows</li>
+                                    <li>Text-to-Video Pipeline</li>
+                                    <li class="new-item">FVD Evaluation on generated videos</li>
+                                    <li class="new-item">Custom ComfyUI Python Nodes</li>
+                                    <li class="new-item">Vector + Relational Hybrid DB anchoring</li>
+                                    <li>Video Diffusion Models</li>
+                                    <li>Temporal Attention / 3D U-Net</li>
+                                    <li>CogVideoX, AnimeGAN / CartoonGAN</li>
+                                    <li>Video LoRA Fine-tuning</li>
+                                    <li>Optical Flow & Temporal Consistency</li>
+                                    <li>ControlNet for Video</li>
+                                    <li>SkyReels / Mochi-1 workflows</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>AnimateDiff — github.com/guoyww/AnimateDiff</li>
+                                    <li>Wan2.1 — github.com/Wan-Video/Wan2.1</li>
+                                    <li>CogVideoX — github.com/THUDM/CogVideo</li>
+                                    <li>ComfyUI — github.com/comfyanonymous/ComfyUI</li>
+                                    <li>AnimeGAN2 — github.com/bryandlee/animegan2-pytorch</li>
+                                    <li>Civitai — civitai.com (Anime LoRA datasets)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>AnimateDiff — first Anime Clip</li>
+                                <li>Wan2.1 locally run (16 GB RAM possible)</li>
+                                <li>Anime Dataset AnimateDiff Fine-tune</li>
+                                <li>Text-to-Anime-Video Pipeline</li>
+                                <li>Custom Anime Style LoRA</li>
+                                <li>Write a custom Python ComfyUI node</li>
+                                <li>Measure FVD on your video LoRA</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            🎉 Full Custom Anime Video Generator — DONE!<br>
+                            <strong>★ ENHANCED:</strong> Always measure FVD. Write custom ComfyUI nodes — don't just use workflows. Hybrid DB: ensure business logic aligns with unstructured semantic data.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 9 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 9</span>
+                            <span class="phase-tag tag-enhanced">HEAVILY ENHANCED</span>
+                        </div>
+                        <div class="phase-title">MLOps & Production</div>
+                        <div class="phase-duration">3–4 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Docker & Containerization</li>
+                                    <li class="new-item">Kubernetes (K8s) — industry standard</li>
+                                    <li class="new-item">Helm — K8s deployment</li>
+                                    <li class="new-item">vLLM — high-performance LLM serving</li>
+                                    <li>TensorRT Optimization</li>
+                                    <li class="new-item">Prometheus + Grafana + Loki monitoring</li>
+                                    <li class="new-item">Data Drift & Concept Drift Detection — Evidently AI</li>
+                                    <li class="new-item">Continuous Retraining triggered by drift</li>
+                                    <li class="new-item">Model Registry — MLflow / Hugging Face Hub</li>
+                                    <li class="new-item">A/B Testing & Canary / Blue-Green Deployment</li>
+                                    <li class="new-item">Cost Monitoring & FinOps for AI</li>
+                                    <li class="new-item">Autoscaling for LLM APIs</li>
+                                    <li>FastAPI Production API, ONNX Export</li>
+                                    <li>Edge / On-Device Inference (TFLite)</li>
+                                    <li class="new-item">Feature Store — Feast</li>
+                                    <li class="new-item">Circuit Breakers & Model Fallback</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>Docker Official Docs</li>
+                                    <li>Kubernetes — kubernetes.io (free docs)</li>
+                                    <li>vLLM — github.com/vllm-project/vllm</li>
+                                    <li>Evidently AI — evidentlyai.com</li>
+                                    <li>Prometheus — prometheus.io</li>
+                                    <li>Grafana — grafana.com</li>
+                                    <li>MLflow Model Registry — mlflow.org</li>
+                                    <li>FastAPI — fastapi.tiangolo.com</li>
+                                    <li>Full Stack Deep Learning — fullstackdeeplearning.com</li>
+                                    <li>Feast Feature Store — feast.dev</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Docker Deploy Anime Video Model</li>
+                                <li>FastAPI Production API with versioning (/v1, /v2)</li>
+                                <li>K8s: deploy model behind load balancer (minikube locally)</li>
+                                <li>vLLM: serve a 7B model — handle 100 concurrent requests without OOM</li>
+                                <li>Grafana dashboard: track latency, throughput, error rates live</li>
+                                <li>Drift monitoring: simulate 30-day data shift → auto-alert when drift exceeds threshold</li>
+                                <li>A/B test: route 50% traffic to fine-tuned vs base model — report statistical winner</li>
+                                <li>Register model in MLflow Model Registry: tag Staging → Production</li>
+                                <li>Deploy Bangla classifier to TFLite — run on Android (target <50ms)</li>
+                                <li>Cost dashboard for video model: $ per video second — 30% reduction plan</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ HEAVILY ENHANCED:</strong> vLLM is 10x faster than FastAPI for LLMs. K8s is mandatory for scalable deployment. Drift detection + Evidently AI is how you catch silent model rot.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 9.5 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 9.5</span>
+                            <span class="phase-tag tag-new">NEW</span>
+                        </div>
+                        <div class="phase-title">Advanced LLMOps & Serving</div>
+                        <div class="phase-duration">1.5–2 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>vLLM Production Setup — PagedAttention</li>
+                                    <li>Speculative Decoding</li>
+                                    <li>KV Cache Optimization</li>
+                                    <li>Continuous Batch Inference</li>
+                                    <li>Quantization-aware serving (AWQ + vLLM)</li>
+                                    <li>Autoscaling for LLMs</li>
+                                    <li>LLMOps cost monitoring & optimization</li>
+                                    <li>TensorRT-LLM optimization pipeline</li>
+                                    <li>Token caching strategies, Prompt batching</li>
+                                    <li>Model routing (small vs large model)</li>
+                                    <li>Observability: LangSmith, Phoenix, Arize</li>
+                                    <li>Load testing (Locust)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>vLLM docs — docs.vllm.ai</li>
+                                    <li>TensorRT-LLM — github.com/NVIDIA/TensorRT-LLM</li>
+                                    <li>TGI — github.com/huggingface/text-generation-inference</li>
+                                    <li>LangSmith — smith.langchain.com</li>
+                                    <li>Arize AI — arize.com</li>
+                                    <li>Locust — locust.io</li>
+                                    <li>DeepLearning.AI — Efficiently Serving LLMs (Free)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Deploy production LLM API with vLLM — target 1,000+ req/sec with autoscaling</li>
+                                <li>Load test with Locust: show P99 latency <200ms</li>
+                                <li>Speculative decoding experiment: measure token/sec improvement</li>
+                                <li>Cost optimization: token caching + model routing reduces cost by 50%</li>
+                                <li>Full observability stack: LangSmith + Grafana + alerting</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ NEW:</strong> vLLM + autoscaling + cost optimization separates good engineers from great ones.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 10 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 10</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">Advanced RAG & Production Retrieval</div>
+                        <div class="phase-duration">2–3 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>GraphRAG (knowledge graph retrieval)</li>
+                                    <li>Multimodal RAG (images + text)</li>
+                                    <li>RAG + Agents (full agentic retrieval)</li>
+                                    <li>Production RAG Architecture</li>
+                                    <li class="new-item">RAPTOR (Recursive Abstractive Processing)</li>
+                                    <li class="new-item">Adaptive RAG</li>
+                                    <li>Self-RAG & Corrective RAG (CRAG)</li>
+                                    <li>HyDE (Hypothetical Document Embeddings)</li>
+                                    <li>Multi-hop reasoning over documents</li>
+                                    <li>RAG with structured data (SQL + vector hybrid)</li>
+                                    <li class="new-item">Online / Continual Learning for RAG</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>GraphRAG — github.com/microsoft/graphrag</li>
+                                    <li>LlamaIndex Advanced RAG — docs.llamaindex.ai</li>
+                                    <li>Self-RAG Paper — arxiv.org/abs/2310.11511</li>
+                                    <li>CRAG Paper — arxiv.org/abs/2401.15884</li>
+                                    <li>RAPTOR Paper — arxiv.org/abs/2401.18059</li>
+                                    <li>Pinecone Learning Center (production RAG)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>GraphRAG system over a large document corpus</li>
+                                <li>Multimodal RAG: query images + text together</li>
+                                <li>Self-RAG pipeline with automatic retrieval decisions</li>
+                                <li>Production RAG API with caching + latency monitoring</li>
+                                <li>Bangla document Q&A at scale (1,000+ documents)</li>
+                                <li>Full Agentic RAG: agent decides when/what to retrieve</li>
+                                <li>RAPTOR: hierarchical summarization over long documents</li>
+                                <li>Adaptive RAG: system automatically picks retrieval strategy</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 11 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 11</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">System Design for AI</div>
+                        <div class="phase-duration">2–3 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>ML System Design</li>
+                                    <li>Model Serving Architecture</li>
+                                    <li>Feature Store (Feast / Tecton)</li>
+                                    <li class="new-item">Real-world Case Studies</li>
+                                    <li class="new-item">FinOps / Cost Engineering</li>
+                                    <li class="new-item">SLA / SLO writing</li>
+                                    <li class="new-item">Circuit Breakers & Fallback Architectures</li>
+                                    <li>Scalable Architecture (Microservices)</li>
+                                    <li>Load Balancing & Caching (Redis)</li>
+                                    <li>Message Queues (Kafka, RabbitMQ)</li>
+                                    <li>Distributed Systems Basics</li>
+                                    <li class="new-item">Training-serving skew prevention</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>System Design Interview — Alex Xu (Book)</li>
+                                    <li>Designing ML Systems — Chip Huyen (Book)</li>
+                                    <li>ByteByteGo — YouTube (Free)</li>
+                                    <li>System Design Primer — github.com/donnemartin</li>
+                                    <li>Full Stack Deep Learning — fullstackdeeplearning.com</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Design: Instagram Reels AI recommendation system</li>
+                                <li>Design: TikTok-style video generation platform</li>
+                                <li>ChatGPT Clone System Architecture</li>
+                                <li>Real-time ML Prediction API (low latency <100ms)</li>
+                                <li>Feature Store (Feast): serve same features training + live API with 0ms skew</li>
+                                <li>Write SLO/SLI for your Phase 9 video model deployment</li>
+                                <li>Cost model: $ per video second, with 30% reduction plan</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> Real-world case studies (Instagram, TikTok). Feature Store project (training-serving skew is #1 production bug). Circuit Breakers, FinOps, SLO writing added.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 11.5 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 11.5</span>
+                            <span class="phase-tag tag-new">NEW</span>
+                        </div>
+                        <div class="phase-title">Research Engineering</div>
+                        <div class="phase-duration">1–2 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>Reading arXiv Papers Efficiently</li>
+                                    <li>Paper Reproduction from scratch</li>
+                                    <li>Ablation Studies</li>
+                                    <li>Benchmark Creation</li>
+                                    <li>Statistical Significance Testing for results</li>
+                                    <li>Open-Source Contributions</li>
+                                    <li>Experiment Tracking for research (W&B sweeps)</li>
+                                    <li>Research Writing basics</li>
+                                    <li>How to write a technical blog post</li>
+                                    <li>Contributing to PyTorch / Hugging Face / LangChain</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>arXiv — arxiv.org (cs.LG, cs.CL, cs.CV)</li>
+                                    <li>Papers With Code — paperswithcode.com</li>
+                                    <li>Connected Papers — connectedpapers.com</li>
+                                    <li>GitHub good-first-issue labels on HF/LangChain/ComfyUI</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Reproduce 3 recent papers from scratch (no reference GitHub) — 2 weeks each</li>
+                                <li>Run ablation studies on your Phase 5 LLM: test 5+ architectural choices</li>
+                                <li>Create a Bangla NLP benchmark leaderboard — publish on Hugging Face</li>
+                                <li>Write 3 technical blog posts on AI topics (500+ words each)</li>
+                                <li>Submit 1 merged PR to LangChain, LlamaIndex, Hugging Face, or ComfyUI</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ NEW:</strong> True expert level. A merged PR in a major OSS AI repo is worth more than 10 personal projects to hiring managers.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 12 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 12</span>
+                            <span class="phase-tag tag-enhanced">ENHANCED</span>
+                        </div>
+                        <div class="phase-title">Interview Prep & Career Launch</div>
+                        <div class="phase-duration">1–2 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>ML/AI Interview Questions (50 must-know)</li>
+                                    <li>ML System Design Mock Interviews</li>
+                                    <li class="new-item">Open-Source Contribution — 1 Merged PR</li>
+                                    <li class="new-item">Bangla AI Niche Strategy</li>
+                                    <li>GitHub Portfolio Polish</li>
+                                    <li>LeetCode (Medium — Arrays, DP, Graphs)</li>
+                                    <li>Resume & LinkedIn Optimisation</li>
+                                    <li>Behavioural Interview (STAR method)</li>
+                                    <li>Kaggle Competitions for credibility</li>
+                                    <li>Salary Negotiation Basics</li>
+                                    <li>Freelance / Remote AI Job Platforms</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>InterviewBit — ML Interview Questions</li>
+                                    <li>LeetCode — leetcode.com (Free tier)</li>
+                                    <li>Glassdoor — company-specific AI interview experiences</li>
+                                    <li>Kaggle — kaggle.com (competitions)</li>
+                                    <li>LinkedIn — Optimise with AI keywords</li>
+                                    <li>Toptal / Upwork — remote AI freelance</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Solve 30 LeetCode problems (Medium level)</li>
+                                <li>Complete 2 Kaggle competitions (Bronze+ badge)</li>
+                                <li>Write 3 technical blog posts on AI topics</li>
+                                <li>Create polished GitHub portfolio README</li>
+                                <li>Mock interview with a peer — record & review</li>
+                                <li>Apply to 20 companies / freelance gigs</li>
+                                <li>Submit 1 merged PR in LangChain / HF / ComfyUI — put link on resume</li>
+                                <li>Publish a Bangla RAG dataset on Hugging Face Hub</li>
+                                <li>Build public Bangla LLM benchmark leaderboard</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ ENHANCED:</strong> Open-source contribution (1 merged PR) = #1 expert signal. Bangla AI niche is a real and lasting competitive edge.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Phase 13 -->
+            <section class="phase-section">
+                <div class="phase-header" onclick="togglePhase(this)">
+                    <div class="phase-header-left">
+                        <div class="phase-meta">
+                            <span class="phase-title">PHASE 13</span>
+                            <span class="phase-tag tag-expert">EXPERT / OPTIONAL</span>
+                        </div>
+                        <div class="phase-title">Performance Engineering: CUDA / Triton</div>
+                        <div class="phase-duration">2–3 Months</div>
+                    </div>
+                    <svg class="chevron-icon" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                </div>
+                <div class="phase-content">
+                    <div class="phase-content-inner">
+                        <div class="phase-grid">
+                            <div>
+                                <div class="section-label">Key Topics</div>
+                                <ul class="topic-list">
+                                    <li>CUDA Basics — threads, blocks, warps, shared memory</li>
+                                    <li>Triton Kernels — custom GPU operations</li>
+                                    <li>Kernel Fusion</li>
+                                    <li>GPU Memory Optimization</li>
+                                    <li>Profiling with Nsight & torch.profiler</li>
+                                    <li>Compiler Optimization</li>
+                                    <li>Memory bandwidth bottlenecks</li>
+                                    <li>Flash Attention — reading the CUDA code</li>
+                                    <li>Custom fused activation functions</li>
+                                    <li>TensorRT custom layers</li>
+                                    <li>Hardware-aware model design</li>
+                                    <li>Roofline model analysis</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <div class="section-label">Resources</div>
+                                <ul class="resource-list">
+                                    <li>CUDA C Programming Guide — docs.nvidia.com</li>
+                                    <li>Triton — github.com/openai/triton</li>
+                                    <li>CUDA by Example (book)</li>
+                                    <li>Nsight Systems — NVIDIA</li>
+                                    <li>FlashAttention CUDA code — github.com/Dao-AILab</li>
+                                    <li>PyTorch CUDA Memory Management Guide</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div style="margin-top: 2rem;">
+                            <div class="section-label">Projects</div>
+                            <ul class="project-list">
+                                <li>Write a custom fused CUDA kernel for a novel activation function — 2x speedup vs PyTorch native</li>
+                                <li>Rewrite one PyTorch op in Triton — show measured speedup</li>
+                                <li>Profile Phase 5 GPT training: find top 3 bottlenecks, optimize</li>
+                                <li>Implement FlashAttention from scratch in Triton</li>
+                                <li>Roofline analysis: determine if your model is memory-bound or compute-bound</li>
+                            </ul>
+                        </div>
+                        <div class="note-box">
+                            <strong>★ OPTIONAL EXPERT:</strong> Staff level = you write kernels when PyTorch is too slow. CUDA/Triton puts you in the top 1% of AI engineers. Only pursue if targeting Staff/Research/Foundation Model roles.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Weekly Routine -->
+            <div class="info-section">
+                <h2 class="info-title">📅 Weekly Study Routine</h2>
+                <div class="schedule-grid">
+                    <div class="schedule-card">
+                        <div class="schedule-day">Monday</div>
+                        <div class="schedule-hours">3 hours</div>
+                        <div class="schedule-desc">Theory Day — 2h video course + 1h paper/blog reading</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">Tuesday</div>
+                        <div class="schedule-hours">3 hours</div>
+                        <div class="schedule-desc">Practice Day — 3h coding, implement concepts from scratch</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">Wednesday</div>
+                        <div class="schedule-hours">3 hours</div>
+                        <div class="schedule-desc">Project Day — 3h working on current phase project</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">Thursday</div>
+                        <div class="schedule-hours">4 hours</div>
+                        <div class="schedule-desc">Theory + Practice — 2h new concept + 2h hands-on coding</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">Friday</div>
+                        <div class="schedule-hours">3 hours</div>
+                        <div class="schedule-desc">Project — Continue 3h pushing project forward, Git commit, W&B log</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">Saturday</div>
+                        <div class="schedule-hours">3 hours</div>
+                        <div class="schedule-desc">Review + Research — Review week + read 1 arXiv paper + W&B analysis</div>
+                    </div>
+                    <div class="schedule-card">
+                        <div class="schedule-day">Sunday</div>
+                        <div class="schedule-hours">2 hours</div>
+                        <div class="schedule-desc">Rest / Explore — Optional: Kaggle, community, blog post drafts</div>
+                    </div>
+                </div>
+                <p style="margin-top: 2rem; text-align:center; font-size: 1.1rem; font-weight:600; color: var(--accent-primary);">~20h Per week · Every week · Consistency beats intensity</p>
+                <p style="margin-top: 0.5rem; text-align:center; font-size: 0.9rem; color: var(--text-tertiary);">Never miss two days in a row. Even 1h/day beats a 10h Sunday marathon.</p>
+            </div>
+
+            <!-- GPU Guide -->
+            <div class="info-section">
+                <h2 class="info-title">🖥️ GPU & Infrastructure Guide</h2>
+                <div class="table-wrapper">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Platform</th>
+                                <th>Cost</th>
+                                <th>Best For</th>
+                                <th>Budget Tip</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Your PC (16GB RAM)</td><td>Free</td><td>Phase 0–6, small model testing</td><td>Always start here first</td></tr>
+                            <tr><td>Google Colab (Free)</td><td>Free (limited)</td><td>Phase 1–4, short experiments</td><td>Use for quick tests only</td></tr>
+                            <tr><td>Google Colab Pro</td><td>$10/month</td><td>Phase 4–5, medium training</td><td>Worth it for Phase 5</td></tr>
+                            <tr><td>RunPod</td><td>$0.20–0.80/hr</td><td>Phase 5–9, large training runs</td><td>Budget $50–100 per big phase</td></tr>
+                            <tr><td>Lambda Labs</td><td>$0.45/hr (RTX 6000)</td><td>Phase 5–8, reliable & fast</td><td>Best reliability/cost ratio</td></tr>
+                            <tr><td>AWS / GCP</td><td>Variable</td><td>Phase 9–11, production</td><td>Use free tier first</td></tr>
+                            <tr><td>2x A100 (RunPod)</td><td>~$3–5/hr</td><td>Phase 5.5 Distributed Training</td><td>Budget $10–20 for experiments</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <!-- Success Tips -->
+            <div class="info-section">
+                <h2 class="info-title">💡 Success Tips</h2>
+                <div class="tips-grid">
+                    <div class="tip-card">
+                        <div class="tip-icon">🔥</div>
+                        <div class="tip-title">Consistency beats intensity</div>
+                        <div class="tip-desc">Even 1 hour per day beats a 10-hour Sunday marathon. Never miss two days in a row.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">🔨</div>
+                        <div class="tip-title">Build, don't memorize</div>
+                        <div class="tip-desc">Every concept → implement it. Understanding comes from doing, not reading.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">📊</div>
+                        <div class="tip-title">Log everything with W&B</div>
+                        <div class="tip-desc">From Phase 2 onward, every training run goes into W&B. Your W&B profile is reviewed in interviews.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">🐙</div>
+                        <div class="tip-title">Use Git from Day 1</div>
+                        <div class="tip-desc">Commit every day. Your GitHub is your portfolio. Recruiters look at it.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">🗃️</div>
+                        <div class="tip-title">SQL is non-negotiable</div>
+                        <div class="tip-desc">Every data/AI role uses SQL daily. 2 weeks investment = lifetime value.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">📐</div>
+                        <div class="tip-title">Always measure with metrics</div>
+                        <div class="tip-desc">FID for images. FVD for video. A/B tests with stat sig. 'It works' is not enough — prove it.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">💼</div>
+                        <div class="tip-title">RAG is job-ready now</div>
+                        <div class="tip-desc">You can get hired after Phase 4.6 for junior RAG/LLM roles. Keep that option open.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">📄</div>
+                        <div class="tip-title">Read 1 arXiv paper/week</div>
+                        <div class="tip-desc">Follow: Andrej Karpathy, Yann LeCun, Yannic Kilcher on Twitter/X. Implement 1 paper/month.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">🇧🇩</div>
+                        <div class="tip-title">Bangla AI is your moat</div>
+                        <div class="tip-desc">Build public Bangla datasets and models. Very few people do this. It makes you irreplaceable in that niche.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">🌟</div>
+                        <div class="tip-title">Contribute to OSS</div>
+                        <div class="tip-desc">1 merged PR in LangChain/HF > 10 personal projects in the eyes of hiring managers.</div>
+                    </div>
+                    <div class="tip-card">
+                        <div class="tip-icon">😴</div>
+                        <div class="tip-title">Rest is productive</div>
+                        <div class="tip-desc">Brain consolidates learning during sleep. Rest days are not wasted days.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Checklist -->
+            <div class="info-section">
+                <h2 class="info-title">✅ Progress Checklist</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--text-tertiary);">Click to mark phases as completed. Progress auto-saves in your browser.</p>
+                <div class="progress-text"><span id="progress-count">0</span> of <span id="total-count">0</span> phases completed</div>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-bar" style="width: 0%"></div>
+                </div>
+                <div id="checklist-container"></div>
+            </div>
+
+        </main>
+
+        <footer class="footer">
+            <p>🚀 Start Phase 0, Month 1 — TODAY!</p>
+            <p style="margin-top: 0.5rem; font-size: 0.9rem;">This is a long road — but every expert was once exactly where you are now.</p>
+            <p style="margin-top: 2rem; font-size: 0.8rem; color: var(--text-tertiary);">Generated by Claude · Anthropic · claude.ai | v3 Expert Edition</p>
+        </footer>
+    </div>
+
+    <script>
+        const phases = [
+            'PHASE 0', 'PHASE 0.5', 'PHASE 1', 'PHASE 1.5', 'PHASE 2', 
+            'PHASE 2.5', 'PHASE 3', 'PHASE 3.5', 'PHASE 4', 'PHASE 4.5', 
+            'PHASE 4.6', 'PHASE 4.7', 'PHASE 5', 'PHASE 5.5', 'PHASE 6', 
+            'PHASE 6.5', 'PHASE 7', 'PHASE 7.5', 'PHASE 8', 'PHASE 9', 
+            'PHASE 9.5', 'PHASE 10', 'PHASE 11', 'PHASE 11.5', 'PHASE 12', 'PHASE 13'
+        ];
+
+        let completed = new Set();
+
+        try {
+            const stored = localStorage.getItem('ai-roadmap-progress');
+            if (stored) completed = new Set(JSON.parse(stored));
+        } catch(e) {}
+
+        function renderChecklist() {
+            const container = document.getElementById('checklist-container');
+            container.innerHTML = '';
+            phases.forEach((p, i) => {
+                const div = document.createElement('div');
+                div.className = 'checklist-item' + (completed.has(p) ? ' done' : '');
+                div.innerHTML = `
+                    <input type="checkbox" ${completed.has(p) ? 'checked' : ''} onchange="toggleCheck('${p}', this)">
+                    <span>${p}</span>
+                `;
+                container.appendChild(div);
+            });
+            updateProgress();
+        }
+
+        function toggleCheck(phase, cb) {
+            if (cb.checked) {
+                completed.add(phase);
+                cb.closest('.checklist-item').classList.add('done');
+            } else {
+                completed.delete(phase);
+                cb.closest('.checklist-item').classList.remove('done');
+            }
+            updateProgress();
+            localStorage.setItem('ai-roadmap-progress', JSON.stringify([...completed]));
+        }
+
+        function updateProgress() {
+            document.getElementById('total-count').textContent = phases.length;
+            document.getElementById('progress-count').textContent = completed.size;
+            const pct = (completed.size / phases.length) * 100;
+            document.getElementById('progress-bar').style.width = pct + '%';
+        }
+
+        function togglePhase(header) {
+            const section = header.closest('.phase-section');
+            const content = header.nextElementSibling;
+            const inner = content.firstElementChild;
+            
+            if (section.classList.contains('expanded')) {
+                content.style.maxHeight = '0';
+                section.classList.remove('expanded');
+            } else {
+                content.style.maxHeight = inner.scrollHeight + 20 + 'px';
+                section.classList.add('expanded');
+            }
+        }
+
+        function toggleAll(expand) {
+            document.querySelectorAll('.phase-section').forEach(sec => {
+                const content = sec.querySelector('.phase-content');
+                const inner = content.firstElementChild;
+                if (expand) {
+                    content.style.maxHeight = inner.scrollHeight + 20 + 'px';
+                    sec.classList.add('expanded');
+                } else {
+                    content.style.maxHeight = '0';
+                    sec.classList.remove('expanded');
+                }
+            });
+        }
+
+        renderChecklist();
+    </script>
+</body>
+</html>
+

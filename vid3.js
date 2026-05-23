@@ -13,5 +13,5 @@
 // alert(100+20)
 
 
-console.log('hello world');
-console.log(29+39)
+// console.log('hello world');
+// console.log(29+39)
