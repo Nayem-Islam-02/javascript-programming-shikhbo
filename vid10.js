@@ -17,4 +17,4 @@ var friendsAge = [15 , 26, 18, 30, "hello"];
 console.log(friendsAge);
 
 var friendsName = ['Rubel', 'Mokku', 'sUMIT', 'NOBIN'];
-console.log(friendsName)
+console.log(friendsName);
